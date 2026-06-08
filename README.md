@@ -25,7 +25,7 @@ Vision foundation models provide strong general representations, but they are no
 
 ## Framework
 
-![TOP-Net framework](assets/framework.png)
+![TOP-Net framework](https://github.com/wchao0601/TOP-Net/blob/main/network.png)
 
 TOP-Net follows a two-stage design:
 
@@ -33,7 +33,7 @@ TOP-Net follows a two-stage design:
 2. **VFM adaptation and fusion.** A frozen VFM extracts general optical/SAR features. ToPA priors are injected via GFM, then optical and SAR features are fused by MBFM and sent to an oriented bounding box detection head.
 
 ## Method
-
+![Task-oriented Prior Adapter](https://github.com/wchao0601/TOP-Net/blob/main/adapter.png)
 ### Task-oriented Prior Adapter
 
 **ToPA** serves as a task-specific knowledge carrier for OSFD. It contains:
@@ -57,7 +57,7 @@ TOP-Net follows a two-stage design:
 ### OGSOD-1.0 and OGSOD-2.0
 
 | Method | Params | FLOPs | Time | OGSOD-1.0 mAP | OGSOD-2.0 mAP |
-|---|---:|---:|---:|---:|---:|
+|---|:---:|:---:|:---:|:---:|:---:|
 | E2E-OSDet | 23.332M | 10.080G | 21.3ms | 67.3 | 65.1 |
 | ViT-Adapter-S | 36.316M | 52.752G | 70.8ms | 71.4 | 68.2 |
 | BAT-S | 27.434M | 25.188G | 43.2ms | 69.9 | 66.5 |
@@ -69,7 +69,7 @@ TOP-Net follows a two-stage design:
 ### M4-SAR
 
 | Method | Params | FLOPs | Time | AP50 | AP75 | mAP |
-|---|---:|---:|---:|---:|---:|---:|
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
 | MMIDet | 53.591M | 31.526G | 41.9ms | 74.9 | 68.6 | 59.8 |
 | E2E-OSDet | 23.333M | 40.324G | 20.9ms | 77.7 | 70.3 | 61.4 |
 | ViT-Adapter-S | 36.317M | 211.008G | 72.7ms | 78.3 | 70.8 | 61.6 |
@@ -80,9 +80,9 @@ TOP-Net follows a two-stage design:
 
 ## Qualitative Results
 
-![Detection comparison](assets/detection_results.png)
+![Detection comparison](https://github.com/wchao0601/TOP-Net/blob/main/detect.png)
 
-![Heatmap comparison](assets/heatmap_results.png)
+![Heatmap comparison](https://github.com/wchao0601/TOP-Net/blob/main/heatmap.png)
 
 ## Installation
 
@@ -124,43 +124,29 @@ datasets/
 Supported benchmarks:
 
 | Dataset | Resolution | Classes | Train / Val / Test |
-|---|---:|---|---|
+|---|---:|---|:---:|
 | OGSOD-1.0 | 256 x 256 | Bridge, Harbor, Oil-Tank | 14,665 / - / 3,666 |
 | OGSOD-2.0 | 256 x 256 | Bridge, Harbor, Oil-Tank | 14,250 / 2,035 / 4,047 |
 | M4-SAR | 512 x 512 | Bridge, Harbor, Oil-Tank, Playground, Airport, Wind-Turbine | 56,116 / 22,112 / 33,946 |
 
 ## Training
 
-### Stage 1: Train ToPA
+### Train TOP-Net
 
 ```bash
-python tools/train.py \
-  --config configs/topnet/topa_stage1.yaml \
-  --data datasets/M4-SAR
-```
-
-### Stage 2: Train TOP-Net
-
-```bash
-python tools/train.py \
-  --config configs/topnet/topnet_s_stage2.yaml \
-  --data datasets/OGSOD-2.0 \
-  --pretrained-topa checkpoints/topa_m4sar.pth
+python tools/train.py
 ```
 
 ## Evaluation
 
 ```bash
-python tools/test.py \
-  --config configs/topnet/topnet_s_stage2.yaml \
-  --weights checkpoints/topnet_s_ogsod2.pth \
-  --data datasets/OGSOD-2.0
+python tools/test.py
 ```
 
 ## Model Zoo
 
 | Model | Backbone | Dataset | AP50 | AP75 | mAP | Checkpoint |
-|---|---|---|---:|---:|---:|---|
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
 | TOP-Net-S | DINOv3-Small | OGSOD-1.0 | 96.2 | 82.5 | 74.0 | Coming soon |
 | TOP-Net-B | DINOv3-Base | OGSOD-1.0 | 96.4 | 83.2 | 74.6 | Coming soon |
 | TOP-Net-S | DINOv3-Small | OGSOD-2.0 | 95.0 | 79.8 | 71.8 | Coming soon |
