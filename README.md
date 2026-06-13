@@ -13,7 +13,6 @@ Vision foundation models provide strong general representations, but they are no
 
 ## News
 - The code will be made public once the paper is accepted (2026.06.13).
-- Code, pretrained models, and scripts will be released in this repository (2026.06.08).
 
 ## Highlights
 
