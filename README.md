@@ -12,8 +12,8 @@ This repository contains the official implementation of **TOP-Net**, a task-orie
 Vision foundation models provide strong general representations, but they are not naturally aware of cross-modal optical-SAR alignment, SAR physical imaging priors, or the extreme scale variation in remote sensing scenes. TOP-Net bridges this gap by injecting task-specific priors into a frozen VFM and performing balanced optical-SAR feature fusion.
 
 ## News
-
-- Code, pretrained models, and scripts will be released in this repository.
+- The code will be made public once the paper is accepted (2026.06.13).
+- Code, pretrained models, and scripts will be released in this repository (2026.06.08).
 
 ## Highlights
 
